@@ -5,11 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
-
-import java.time.ZonedDateTime;
-import java.time.ZoneId;
+import java.time.Instant;
 import java.util.Set;
 
 @Data
@@ -26,12 +23,10 @@ public class Note {
     private String text;
 
     private Set<Tag> tags;
-
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssXXX")
-    private ZonedDateTime createdDate;
+    private Instant createdDate;
 
     public Note(String title, String text, Set<Tag> tags) {
-        this.createdDate = ZonedDateTime.now(ZoneId.systemDefault());
+        this.createdDate = Instant.now();
         this.title = title;
         this.text = text;
         this.tags = tags;

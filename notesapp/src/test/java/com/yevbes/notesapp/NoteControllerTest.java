@@ -15,8 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.ZonedDateTime;
-import java.time.ZoneId;
+import java.time.Instant;
 import java.util.List;
 import java.util.Set;
 
@@ -135,9 +134,9 @@ public class NoteControllerTest {
     @Test
     public void testGetAllNotes_Success() throws Exception {
         NoteResponse response1 = new NoteResponse("1", "Title 1",
-                ZonedDateTime.now(ZoneId.systemDefault()), Set.of(Tag.BUSINESS));
+                Instant.now(), Set.of(Tag.BUSINESS));
         NoteResponse response2 = new NoteResponse("2", "Title 2",
-                ZonedDateTime.now(ZoneId.systemDefault()), Set.of(Tag.PERSONAL));
+                Instant.now(), Set.of(Tag.PERSONAL));
 
         Page<NoteResponse> page = new PageImpl<>(List.of(response1, response2));
 
@@ -156,7 +155,7 @@ public class NoteControllerTest {
         response.setId("1");
         response.setTitle("Test Title");
         response.setText("Test text");
-        response.setCreatedDate(ZonedDateTime.now(ZoneId.systemDefault()));
+        response.setCreatedDate(Instant.now());
 
         when(noteService.getNoteById("1")).thenReturn(response);
 

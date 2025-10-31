@@ -91,7 +91,7 @@ public class NoteService {
         return new NoteResponse(
                 note.getId(),
                 note.getTitle(),
-                note.getCreatedDate(),
+                note.getCreatedDate(),  // Instant
                 note.getTags()
         );
     }
@@ -101,7 +101,7 @@ public class NoteService {
         response.setId(note.getId());
         response.setTitle(note.getTitle());
         response.setText(note.getText());
-        response.setCreatedDate(note.getCreatedDate());
+        response.setCreatedDate(note.getCreatedDate());  // Instant
         response.setTags(note.getTags());
         response.setStats(calculateStats(note.getText()));
 
